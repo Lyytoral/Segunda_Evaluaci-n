@@ -14,54 +14,20 @@
 <body>
 
     <nav>
-        <a href="index.html">Index</a> <a href="chartjs-line.html">Line chart</a> <a href="chartjs-bar.html">Bar chart</a> <a href="chartjs-radar.html">Radar chart</a> <a href="c3js-line.html" class="actual">Feminicidios RM</a> <a href="d3plus-treemap.html">Treemap</a>
+        <a href="index.html">Inicio</a> <a href="chartjs-line.html">Feminicidios RM</a> <a href="chartjs-bar.html">Por Región</a> <a href="chartjs-radar.html">Causa de Muerte RM</a> <a href="c3js-line.html" class="actual">Edad</a> <a href="d3plus-treemap.html">Relación</a>
     </nav>
 
     <div id="chart"></div>
 
     <script>
-        //Estoy yendo por datos actualizados, consultando a la API https://mindicador.cl/ 
-
-        Promise.all([d3.json("https://mindicador.cl/api/dolar"), d3.json("https://mindicador.cl/api/euro")]).then(function(datos) {
-
-            var dolares = [],
-                euros = [];
-
-            datos[0].serie.forEach(function(d) {
-                dolares.push(d.valor)
-            });
-
-            datos[1].serie.forEach(function(d) {
-                euros.push(d.valor)
-            });
-
-            var chart = c3.generate({
-                bindto: '#chart',
-                data: {
-                    columns: [
-                        ['Variación de 30 días en el precio del Euro'].concat(euros.reverse()), ['Variación de 30 días en el precio del Dólar'].concat(dolares.reverse())
-                    ]
-                },
-                axis: {
-                    x: {
-                        min: 0,
-                        padding: {
-                            left: 0,
-                            right: 0
-                        }
-                    },
-                    y: {
-                        max: 900,
-                        min: 600,
-                        padding: {
-                            top: 0,
-                            bottom: 0
-                        }
-                    }
-                }
-            });
-
-        })
+        var chart = c3.generate({
+            bindto: '#chart',
+            data: {
+                columns: [
+                    ['Edad de víctima' , 67, 36, 43, 90, 43, 31, 21, 41, 63, 45, 22, 0.5 , 58, 28, 17, 23, 12, 44, 54, 45, 18, 24, 23, 34, 15, 24, 3, 30, 30, 18, 28, 34, 34, 45, 24, 22, 24, 23, 9, 45, 46, 51, 27, 41, 54, 95, 24, 41, 54, 57, 78, 28, 69, 28, 63, 49, 35, 42, 26, 20, 34, 17, 22, 24, 46, 80, 32, 32, 48, 58, 33 ,43 ,21 ,39 ,25 , 67, 64, 39, 20, 32, 26, 68, 63, 87, 40, 36, 17, 30, 50, 4, 43, 32, 48, 15, 38, 41, 27, 23, 22, 20, 36, 22, 27, 36, 50, 42, 29, 18, 26, 13, 36, 31, 26, 50, 37, 36, 22, 25, 33 ,24, 19, 45, 34, 21, 30, 17, 32, 59, 1, 37, 65, 54, 65, 42, 33, 6, 29, 28, 49, 35, 29, 53, 17, 50, 19, 39, 52, 3, 26, 33, 20, 44, 25, 42, 71, 58, 46, 29, 56, 25, 50, 49, 24, 67, 64,42,32,28,61,44,35,51,79]
+                ]
+            }
+        });
     </script>
 
 </body>
